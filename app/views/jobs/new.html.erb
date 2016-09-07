@@ -1,0 +1,68 @@
+<h1> Create a New Job </h1>
+
+<%= form_tag("/jobs", method: "post") do %>
+
+  <div>
+    <%= label_tag(:job_title) %>
+    <%= text_field_tag(:job_title, @job.job_title) %>
+  </div>
+
+  <div>
+    <%= label_tag(:department_name) %>
+    <%= text_field_tag(:department_name, @job.department_name) %>
+  </div>
+
+  <div>
+    <%= label_tag(:salary) %>
+    <%= text_field_tag(:salary, @job.salary) %>
+  </div>
+
+  <div>
+    <%= label_tag(:description) %>
+    <%= text_field_tag(:description, @job.description) %>
+  </div>
+
+  <div>
+    <%= label_tag(:job_criteria_1) %>
+    <%= text_field_tag(:job_criteria_1, @job.job_criteria_1) %>
+  </div>
+
+  <div>
+    <%= label_tag(:job_criteria_2) %>
+    <%= text_field_tag(:job_criteria_2, @job.job_criteria_2) %>
+  </div>
+
+  <div>
+    <%= label_tag(:job_criteria_3) %>
+    <%= text_field_tag(:job_criteria_3, @job.job_criteria_3) %>
+  </div>
+
+  <div>
+    <%= label_tag(:job_criteria_4) %>
+    <%= text_field_tag(:job_criteria_4, @job.job_criteria_4) %>
+  </div>
+
+  <div>
+    <%= label_tag(:job_criteria_5) %>
+    <%= text_field_tag(:job_criteria_5, @job.job_criteria_5) %>
+  </div>
+
+  <div>
+    <%= label_tag(:stage) %>
+    <%= text_field_tag(:stage, @job.stage) %>
+  </div>
+
+  <div>
+    <%= label_tag(:projected_start_date) %>
+    <%= text_field_tag(:projected_start_date, @job.projected_start_date) %>
+  </div>
+
+  <div>
+    <%= label_tag(:timeline_status) %>
+    <%= text_field_tag(:timeline_status, @job.timeline_status) %>
+  </div>
+
+  <div>
+    <%= submit_tag("Save Job") %>
+  </div>
+<% end %>

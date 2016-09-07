@@ -1,0 +1,25 @@
+<h1> Here is the List of the candidates for "Job Name" <h1>
+
+<%= @candidate.each do |candidate| %>
+<div>
+  <h4><%= candidate.first_name %>
+  <%= candidate.last_name %>
+</h4>
+</div>
+  <ul>
+    <h6>
+      <li><%= candidate.email %></li>
+      <li><%= candidate.phone %></li>
+      <li><%= candidate.resume %></li>
+      <li><%= candidate.cover_letter %></li>
+      <li><%= candidate.references %></li>
+      <li><%= candidate.move_forward %></li>
+      <li><%= candidate.status %></li>
+      <li><%= candidate.job_criteria_1 %></li>
+      <li><%= candidate.job_criteria_2 %></li>
+      <li><%= candidate.job_criteria_3 %></li>
+      <li><%= candidate.job_criteria_4 %></li>
+      <li><%= candidate.job_criteria_5 %></li>
+    </h6>
+  </ul>
+<% end %>

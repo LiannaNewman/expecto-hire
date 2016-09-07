@@ -1,0 +1,46 @@
+<h1> Apply to "Name of Job"<h1>
+
+<h4>Job Description</h4>
+
+<%= form_tag("/select_candidates/#{@candidate.id}", method: "patch") do %>
+
+<div>
+  <%= label_tag(@candidate.first_name) %>
+  <%= text_field_tag(:first_name, @candidate.first_name) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.last_name) %>
+  <%= text_field_tag(:last_name, @candidate.last_name) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.email) %>
+  <%= text_field_tag(:email, @candidate.email) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.phone) %>
+  <%= text_field_tag(:phone, @candidate.phone) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.resume) %>
+  <%= text_field_tag(:resume, @candidate.resume) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.cover_letter) %>
+  <%= text_field_tag(:cover_letter, @candidate.cover_letter) %>
+</div>
+
+<div>
+  <%= label_tag(:references) %>
+  <%= text_field_tag(:references, @candidate.references) %>
+</div>
+
+<div>
+  <%= submit_tag("Submit Application") %>
+</div>
+
+<% end %>

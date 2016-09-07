@@ -1,0 +1,78 @@
+<h1> Update Candidate </h1>
+
+<%= form_tag("/select_candidates/#{@candidate.id}", method: "patch") do %>
+<div>
+  <%= label_tag(:job_id) %>
+  <%= text_field_tag(:job_id, @candidate.job_id) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.first_name) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.last_name) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.email) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.phone) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.resume) %>
+</div>
+
+<div>
+  <%= label_tag(@candidate.cover_letter) %>
+</div>
+
+<div>
+  <%= label_tag(:references) %>
+  <%= text_field_tag(:references, @candidate.references) %>
+</div>
+
+<div>
+  <%= label_tag(:move_forward) %>
+  <%= text_field_tag(:move_forward, @candidate.move_forward) %>
+</div>
+
+<div>
+  <%= label_tag(:status) %>
+  <%= text_field_tag(:status, @candidate.status) %>
+</div>
+
+
+<div>
+  <%= label_tag(:job_criteria_1) %>
+  <%= text_field_tag(:job_criteria_1, @candidate.job_criteria_1) %>
+</div>
+
+<div>
+  <%= label_tag(:job_criteria_2) %>
+  <%= text_field_tag(:job_criteria_2, @candidate.job_criteria_2) %>
+</div>
+
+<div>
+  <%= label_tag(:job_criteria_3) %>
+  <%= text_field_tag(:job_criteria_3, @candidate.job_criteria_3) %>
+</div>
+
+<div>
+  <%= label_tag(:job_criteria_4) %>
+  <%= text_field_tag(:job_criteria_4, @candidate.job_criteria_4) %>
+</div>
+
+<div>
+  <%= label_tag(:job_criteria_5) %>
+  <%= text_field_tag(:job_criteria_5, @candidate.job_criteria_5) %>
+</div>
+
+<div>
+  <%= submit_tag("Save Job") %>
+</div>
+
+<% end %>
