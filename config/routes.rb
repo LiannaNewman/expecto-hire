@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get '/users/settings' => 'users#settings'
+
   get '/jobs' => 'jobs#index'
+  get '/jobs/dashboard' => 'jobs#dashboard'
+  get 'jobs/gen_rec' => 'jobs#generate_recommendation'
   get '/jobs/new' => 'jobs#new'
   post '/jobs' => 'jobs#create'
   get '/jobs/:id' => 'jobs#show'
@@ -18,4 +22,5 @@ Rails.application.routes.draw do
   delete '/select_candidates/:id' => 'select_candidates#destroy'
 
   get '/' => 'welcomes#index'
+  get '/settings' => 'welcomes#settings'
 end

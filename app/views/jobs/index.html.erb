@@ -1,19 +1,19 @@
-<h1> Dashboard </h1>
-
-<h2>Current Open Positions</h2>
-<% @jobs.each do |job| %>
-  <h2> <%= job.job_title %> </h2>
-  <h3> Projected Start Date: <%= job.projected_start_date %> </h3>
-<% end %>
-
-
-<h1> What would you like to do? </h1>
+<h1>What would you like to do today?</h1>
 
 <div>
   <ul>
-    <li>Create a New Job</li>
-    <li>Edit an Open Job</li>
-    <li>Update an Open Job</li>
-    <li>Archive an Open Job</li>
+    <h4><%= link_to 'Create a New Job', '/jobs/new' %></h4>
+  </ul>
+</div>
+
+<div>
+  <ul>
+    <h4><%= link_to 'Go to Dashboard', '/jobs/dashboard' %></h4>
+  </ul>
+</div>
+
+<div>
+  <ul>
+    <h4><%= link_to 'View Settings', '/users/settings' %></h4>
   </ul>
 </div>

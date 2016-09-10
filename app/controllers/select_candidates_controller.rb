@@ -1,6 +1,7 @@
 class SelectCandidatesController < ApplicationController
 
   def index
+    @header = "Here is the List of the candidates for 'Job Title'"
     @candidate = Candidate.all
     render 'index'
   end

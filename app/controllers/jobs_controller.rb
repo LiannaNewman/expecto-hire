@@ -1,15 +1,24 @@
 class JobsController < ApplicationController
   def index
+    @header = "Welcome" # add users, name
     @jobs = Job.all
     render 'index.html.erb'
   end
 
+  def dashboard
+    @header = "Welcome to Your dashboard"
+    @jobs = Job.all
+    render 'dashboard.html.erb'
+  end
+
   def new
+    @header = "Create a New Job"
     @job = Job.new
     render 'new.html.erb'
   end
 
   def create
+    @header = "Create a New Job"
     @job = Job.create(
       job_title: params[:job_title],
       department_name: params[:department_name],
@@ -25,10 +34,12 @@ class JobsController < ApplicationController
       timeline_status: params[:timeline_status],
       archive_status: params[:archive_status]
     )
+    render "new.html.erb"
   end
 
   def show
     @job = Job.find_by(id: params[:id])
+    @header = @job.job_title
     render "show"
   end
 
@@ -61,5 +72,7 @@ class JobsController < ApplicationController
   def destroy
     @job = Job.find_by(id: params[:id])
     @job.destroy
+    flash[:success] = "The #{@job.job_title} position has been deleted!"
+    redirect_to "dashboard.html.erb"
   end
 end

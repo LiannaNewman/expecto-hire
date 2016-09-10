@@ -12,7 +12,7 @@
 <meta name="author" content="">
 <!-- Le styles -->
 
-<link href="assets/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="assets/css/flexslider.css" rel="stylesheet">
 <link href="assets/css/switcher.css" rel="stylesheet">
@@ -22,7 +22,8 @@
 </noscript>
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 <link href="assets/css/social.css" rel="stylesheet">
-<link href="assets/css/style.css" rel="stylesheet" id="colors"><!-- !important THIS STYLE CSS ON BOTTOM OF STYLEs LIST-->
+<link href="assets/css/style.css" rel="stylesheet" id="colors">
+<! !important THIS STYLE CSS ON BOTTOM OF STYLEs LIST-->
 
 
 
@@ -64,34 +65,18 @@
     <div class="navbar navbar-static-top">
       <!-- navbar-fixed-top -->
       <div class="navbar-inner">
-        <div class="container"> <a class="brand" href="index.html">
-		<span>Expecto Hire</span>
-		<!--<img src="assets/img/Logo.png" alt="Logo">--></a>
+        <div class="container">
+					<a class="brand" href="index.html">
+						<span>Expecto Hire</span>
+		<!--<img src="assets/img/Logo.png" alt="Logo">-->
+					</a>
           <div id="main-nav">
             <div class="nav-collapse collapse">
               <ul class="nav">
 
-                <li class="active"><a href="index.html">Home</a> </li>
+                <li><a href="/jobs">Home</a> </li>
 
-                <li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> Dashboard
-					<b class="caret"></b>
-					</a>
-
-                  <ul class="dropdown-menu">
-                    <li><a href="portfolio-two-columns.html">Two Column</a></li>
-                    <li><a href="portfolio-three-columns.html">Three Column</a></li>
-					<li><a href="portfolio-four-columns.html">Four Column</a></li>
-                    <li><a href="portfolio_single_project.html">Portfolio single</a></li>
-					<li class="dropdown-submenu"> <a tabindex="-1" href="#">More options</a>
-                <ul class="">
-                  <li><a tabindex="-1" href="portfolio_single_project _video_post.html">Video project</a></li>
-                  <li><a tabindex="-1" href="portfolio_single_project _alt.html">Alternative slider</a></li>
-                </ul>
-              </li>
-			   <li><a href="portfolio_single_project.html">Portfolio single</a></li>
-                  </ul>
-                </li>
+                <li><a href="/jobs/dashboard"> Dashboard </a> </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> About <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="pricing.html">Pricing tables</a></li>
@@ -109,7 +94,7 @@
 
                   </ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> Settings <b class="caret"></b></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/users/settings"> Settings <b class="caret"></b></a>
                   <ul class="dropdown-menu">
 
                     <li><a href="blog-single.html">Blog Single Page</a></li>
@@ -145,35 +130,25 @@
    <!-- ################-->
  <!-- END TOP MENU -->
  <!-- ################-->
-
-
-
 				<!-- SOCIAL PANEL UNDER MENU-->
 				 <div class="top-soc hidden-phone">
 					<div class="container">
-						Hello, <%= @first_name %>
+						<h2> Company Name </h2>
 						<div class="row">
 						</div>
 					</div>
 				</div>
+				<h1><%= @header %></h1>
 				<!--END SOCIAL PANEL UNDER MENU-->
 			</div>
+				<%= yield %>
 			<!-- END HEADER headertop -->
 
 			<!-- MAIN CONTENT CONTAINER -->
-
-    <hr class="half">
-		<%= yield %>
-
 	<hr class="half">
-
    <div class="row">
-
-
   </div>
   </div>
-
-
 </div>
 <!-- END MAIN WRAPPER-->
 <!-- Footer
@@ -238,16 +213,6 @@
 <!-- END FOOTER -->
 <!--[END] MAIN WRAPPER-->
 </div>
-<!--***********STYLE SWITCHER ****************-->
-	<div id="style-switcher" style="right: 0px;">
-            <h2>Log In or Sign-Up<a href="#"><i class="fa-icon-cogs main-color"></i> Log In</a></h2>
-
-                <!--Menu Color -->
-            </div>
-
-	<!--*******************************-->
-	<!--*****[End] style switcher *****-->
-	<!--*******************************-->
 
 <!-- Le javascript
     ================================================== -->

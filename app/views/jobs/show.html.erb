@@ -1,12 +1,11 @@
-<h1> <%= @job.job_title %> </h1>
-
 <div>
+  <h4> Job Title: <%= @job.job_title %></h4>
   <h4> Department: <%= @job.department_name %></h4>
   <h4> Salary: $<%= @job.salary %> </h4>
   <h4> Projected Start Date: <%= @job.projected_start_date %></h4>
   <h4> Current Stage:<%= @job.stage %> </h4>
   <h4> Timeline Status: <%= @job.timeline_status %></h4>
-  </dih4
+</di>
 
 <div>
   <h4> Description: </h4>
@@ -14,14 +13,17 @@
 </div>
 
 <div>
-  <li>Ideal Candidate Criteria 1:<%= @job.job_criteria_1  %></li>
-  <li>Ideal Candidate Criteria 2:<%= @job.job_criteria_2 %></li>
-  <li>Ideal Candidate Criteria 3:<%= @job.job_criteria_3 %></li>
-  <li>Ideal Candidate Criteria 4:<%= @job.job_criteria_4 %></li>
-  <li>Ideal Candidate Criteria 5:<%= @job.job_criteria_5 %></li>
+  <h4>Ideal Candidate Criteria: <h4>
+    <li> <h4> 1:<%= @job.job_criteria_1 %></h4></li>
+    <li> <h4> 2:<%= @job.job_criteria_2 %></h4></li>
+    <li> <h4> 3:<%= @job.job_criteria_3 %></h4></li>
+    <li> <h4> 4:<%= @job.job_criteria_4 %></h4></li>
+    <li> <h4> 5:<%= @job.job_criteria_5 %></h4></li>
 </div>
 
 
 <div>
-  <h4>Archive?</h4>
+  <p> <a href="/jobs/<%= @job.id %>/edit"> Edit </a> </p>
+  <p> <a data-confirm="Are you sure you want to delete this job?" data-method="delete" href="<%= @job.id %>" rel="nofollow">Delete</a> </p>
+  <p> <%= link_to "Back to Dashboard", "/jobs/dashboard" %></p>
 </div>
