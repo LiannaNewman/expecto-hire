@@ -23,5 +23,4 @@ Rails.application.routes.draw do
   delete '/jobs/:id/select_candidates/:id' => 'select_candidates#destroy'
 
   get '/' => 'welcomes#index'
-  get '/settings' => 'welcomes#settings'
 end
