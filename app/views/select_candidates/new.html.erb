@@ -1,8 +1,8 @@
-<h1> Apply to "Name of Job"<h1>
+<h1> Apply to <%= job.job_title %><h1>
 
 <h4>Job Description</h4>
 
-<%= form_tag("/select_candidates/#{@candidate.id}", method: "patch") do %>
+<%= form_tag("jobs/id/select_candidates/#{@candidate.id}", method: "patch") do %>
 
 <div>
   <%= label_tag(@candidate.first_name) %>

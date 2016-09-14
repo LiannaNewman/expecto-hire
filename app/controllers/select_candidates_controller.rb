@@ -1,9 +1,8 @@
 class SelectCandidatesController < ApplicationController
-
+    before_action :authenticate_user!
   def index
-    @header = "Here is the List of the candidates for 'Job Title'"
-    @candidate = Candidate.all
-    render 'index'
+    @header = "Candidate List"
+    @candidates = Candidate.where(job_id: params[:id])
   end
 
   def new
@@ -12,7 +11,7 @@ class SelectCandidatesController < ApplicationController
   end
 
   def create
-    @candidate = Candidate.create(
+    @candidate = @job.candidate.create(
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
@@ -32,7 +31,7 @@ class SelectCandidatesController < ApplicationController
   end
 
   def show
-    @candidate = Candidate.find_by(id: params[:id])
+    @candidate = Candidate.find_by(job_id: params[:job_id])
     render 'show'
   end
 

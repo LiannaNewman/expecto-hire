@@ -12,7 +12,8 @@
           <a href="/jobs/<%= job.id %>"> <%= job.job_title %> </a>
         </h3>
         <h4>  Projected Start Date: <%= job.projected_start_date %></h4>
-            <a href="/jobs/<%= job.id %>/edit"> Edit </a>
+            <a href="/jobs/<%= job.id %>/select_candidates"> View Candidates | </a>
+            <a href="/jobs/<%= job.id %>/edit"> Edit | </a>
             <a data-confirm="Are you sure you want to delete this job?" data-method="delete" href="<%= job.id %>" rel="nofollow">Delete</a>
      </li>
 <% end %>

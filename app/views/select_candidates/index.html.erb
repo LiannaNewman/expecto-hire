@@ -1,23 +1,21 @@
-<%= @candidate.each do |candidate| %>
 <div>
-  <h4><%= candidate.first_name %>
-  <%= candidate.last_name %>
-</h4>
+  <% @candidates.each do |candidate| %>
+  <h4>
+    <%= candidate.first_name %>
+    <%= candidate.last_name %>
+  </h4>
 </div>
   <ul>
     <h6>
-      <li><%= candidate.email %></li>
-      <li><%= candidate.phone %></li>
-      <li><%= candidate.resume %></li>
-      <li><%= candidate.cover_letter %></li>
-      <li><%= candidate.references %></li>
-      <li><%= candidate.move_forward %></li>
-      <li><%= candidate.status %></li>
-      <li><%= candidate.job_criteria_1 %></li>
-      <li><%= candidate.job_criteria_2 %></li>
-      <li><%= candidate.job_criteria_3 %></li>
-      <li><%= candidate.job_criteria_4 %></li>
-      <li><%= candidate.job_criteria_5 %></li>
+      <li>Email: <%= candidate.email %></li>
+      <li>Phone: <%= candidate.phone %></li>
+      <li> <%=link_to "Resume", candidate.resume %></li>
+      <li> <%= link_to "Cover Letter", candidate.cover_letter %></li>
+      <li> <%= link_to "References", candidate.references %></li>
+      <li>Move Forward? <%= candidate.move_forward %></li>
+      <li>Status? <%= candidate.status %></li>
+      <h6>Job Criteria Ranking</h6>
+      <li> Total Score: <%= candidate.job_criteria_1 + candidate.job_criteria_2 + candidate.job_criteria_3 + candidate.job_criteria_4 + candidate.job_criteria_5%></li>
     </h6>
   </ul>
 <% end %>

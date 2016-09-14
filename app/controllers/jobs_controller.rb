@@ -1,8 +1,9 @@
 class JobsController < ApplicationController
+   before_action :authenticate_user!
+
   def index
     @header = "Welcome" # add users, name
     @jobs = Job.all
-    render 'index.html.erb'
   end
 
   def dashboard
