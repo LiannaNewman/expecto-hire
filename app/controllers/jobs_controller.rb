@@ -2,12 +2,11 @@
    before_action :authenticate_user!
 
   def index
-    @header = "Welcome" # add users, name
+    @header = "Welcome"
     @jobs = Job.all
   end
 
   def dashboard
-    @header = "Welcome to Your dashboard"
     @jobs = Job.all
     render 'dashboard.html.erb'
   end
