@@ -1,36 +1,36 @@
-<h1> Apply to <%= job.job_title %><h1>
+<h1> Apply to <%= job_dept_id(current_user).job_title%> Position </h1>
 
 <h4>Job Description</h4>
 
-<%= form_tag("jobs/id/select_candidates/#{@candidate.id}", method: "patch") do %>
+<%= form_tag("jobs/id/select_candidates/#{@candidate.id}", method: "post") do %>
 
 <div>
-  <%= label_tag(@candidate.first_name) %>
+  <%= label_tag(:first_name) %>
   <%= text_field_tag(:first_name, @candidate.first_name) %>
 </div>
 
 <div>
-  <%= label_tag(@candidate.last_name) %>
+  <%= label_tag(:last_name) %>
   <%= text_field_tag(:last_name, @candidate.last_name) %>
 </div>
 
 <div>
-  <%= label_tag(@candidate.email) %>
+  <%= label_tag(:email) %>
   <%= text_field_tag(:email, @candidate.email) %>
 </div>
 
 <div>
-  <%= label_tag(@candidate.phone) %>
+  <%= label_tag(:phone) %>
   <%= text_field_tag(:phone, @candidate.phone) %>
 </div>
 
 <div>
-  <%= label_tag(@candidate.resume) %>
+  <%= label_tag(:resume) %>
   <%= text_field_tag(:resume, @candidate.resume) %>
 </div>
 
 <div>
-  <%= label_tag(@candidate.cover_letter) %>
+  <%= label_tag(:cover_letter) %>
   <%= text_field_tag(:cover_letter, @candidate.cover_letter) %>
 </div>
 

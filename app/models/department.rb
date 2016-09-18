@@ -1,6 +1,6 @@
 class Department < ApplicationRecord
   belongs_to :company
-  belongs_to :user_department
+  has_many :user_departments
   has_many :jobs
-  has_many :users
+  has_many :users, through: :user_departments
 end

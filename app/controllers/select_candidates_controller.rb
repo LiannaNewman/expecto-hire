@@ -66,4 +66,11 @@ class SelectCandidatesController < ApplicationController
     @candidate.destroy
     render 'index.html.erb'
   end
+
+  def gen_rec
+    @candidate = Candidate.find_by(job_id: params[:id])
+    if @candidate.job_criteria_1 + @candidate.job_criteria_2 + @candidate.job_criteria_3 + @candidate.job_criteria_4 + @candidate.job_criteria_5
+    end
+  end
+
 end

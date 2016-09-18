@@ -4,4 +4,11 @@ module JobsHelper
       Job.find_by(department_id: user.department_id)
     end
   end
+
+  def display_name(user)
+    if current_user != nil
+      User.find_by(id: user.id)
+      user.first_name
+    end
+  end
 end

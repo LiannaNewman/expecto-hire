@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/users/settings' => 'users#settings'
-
   get '/jobs' => 'jobs#index'
   get '/jobs/dashboard' => 'jobs#dashboard'
 
