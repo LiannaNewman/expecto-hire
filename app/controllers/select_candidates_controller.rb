@@ -50,7 +50,9 @@ class SelectCandidatesController < ApplicationController
       job_criteria_2: params[:job_criteria_2],
       job_criteria_3: params[:job_criteria_3],
       job_criteria_4: params[:job_criteria_4],
-      job_criteria_5: params[:job_criteria_5]
+      job_criteria_5: params[:job_criteria_5],
+      top_candidate?: params[:top_candidate?],
+      feedback: params[:feedback]
     )
     redirect_to "/jobs/#{@candidate.job.id}/select_candidates"
   end
@@ -60,11 +62,4 @@ class SelectCandidatesController < ApplicationController
     @candidate.destroy
     render 'index.html.erb'
   end
-
-  def gen_rec
-    @candidate = Candidate.find_by(job_id: params[:id])
-    if @candidate.job_criteria_1 + @candidate.job_criteria_2 + @candidate.job_criteria_3 + @candidate.job_criteria_4 + @candidate.job_criteria_5
-    end
-  end
-
 end

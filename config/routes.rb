@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   get '/jobs/:id/edit' => 'jobs#edit'
   patch '/jobs/:id' => 'jobs#update'
   delete '/jobs/:id' => 'jobs#destroy'
+  get 'jobs/:id/gen_rec' => 'jobs#gen_rec'
 
   get '/jobs/:id/select_candidates' => 'select_candidates#index'
   get '/jobs/:id/select_candidates/new' => 'select_candidates#new'
-  get 'jobs/:id/select_candidates/gen_rec' => 'select_candidates#generate_recommendation'
   post '/jobs/:id/select_candidates' => 'select_candidates#create'
   get '/jobs/:id/select_candidates/:id' => 'select_candidates#show'
   get '/jobs/:id/select_candidates/:id/edit' => 'select_candidates#edit'
