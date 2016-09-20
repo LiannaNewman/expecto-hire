@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post '/jobs/:id/select_candidates' => 'select_candidates#create'
   get '/jobs/:id/select_candidates/:id' => 'select_candidates#show'
   get '/jobs/:id/select_candidates/:id/edit' => 'select_candidates#edit'
-  patch '/jobs/:id/select_candidates/:id' => 'select_candidates#update'
+  patch '/jobs/:id/select_candidates' => 'select_candidates#update'
   delete '/jobs/:id/select_candidates/:id' => 'select_candidates#destroy'
 
   get '/' => 'welcomes#index'

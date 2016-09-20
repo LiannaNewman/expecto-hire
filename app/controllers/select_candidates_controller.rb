@@ -1,7 +1,8 @@
 class SelectCandidatesController < ApplicationController
     before_action :authenticate_user!
   def index
-    @header = "Candidate List"
+    @job = Job.find_by(id: params[:id])
+    @header = "#{@job.job_title} - Candidate List"
     @candidates = Candidate.where(job_id: params[:id])
   end
 
@@ -43,13 +44,6 @@ class SelectCandidatesController < ApplicationController
   def update
     @candidate = Candidate.find_by(id: params[:id])
     @candidate.update(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone: params[:phone],
-      resume: params[:resume],
-      cover_letter: params[:cover_letter],
-      references: params[:references],
       move_forward: params[:move_forward],
       status: params[:status],
       job_criteria_1: params[:job_criteria_1],
@@ -58,7 +52,7 @@ class SelectCandidatesController < ApplicationController
       job_criteria_4: params[:job_criteria_4],
       job_criteria_5: params[:job_criteria_5]
     )
-    render 'show'
+    redirect_to "/jobs/#{@candidate.job.id}/select_candidates"
   end
 
   def destroy

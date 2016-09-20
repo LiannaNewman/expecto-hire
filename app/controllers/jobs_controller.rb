@@ -7,7 +7,11 @@
     end
 
     def dashboard
-      @departments = Department.where(id: current_user.department_id)
+      if current_user.admin == true
+        @departments = Department.where(user_department_id: params[:user_department_id])
+      else
+        @departments = Department.where(id: current_user.department_id)
+      end
       @jobs = Job.where(department_id: params[:department_id])
       render 'dashboard.html.erb'
     end

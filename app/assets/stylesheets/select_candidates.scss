@@ -1,3 +1,28 @@
 // Place all the styles related to the SelectCandidates controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+th {
+    text-align: left;
+}
+table, th, td {
+    border: 1px solid #817a94;
+}
+th, td {
+    padding: 10px;
+}
+
+table {
+    border-spacing: 5px;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+}
+
+tbody {
+  overflow: scroll;
+  height: 100%;
+}
+div.scrollit {
+    overflow:scroll;
+    height: 100%;
+}
