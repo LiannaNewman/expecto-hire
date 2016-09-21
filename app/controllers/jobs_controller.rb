@@ -87,19 +87,4 @@ class JobsController < ApplicationController
       @candidate = Candidate.find_by(job_id: params[:id])
     end
 
-    def rec_generator(candidate_1, candidate_2)
-      rec_generator = []
-      total_criteria_ranking = @candidate.job_criteria_1 + @candidate.job_criteria_2 + @candidate.job_criteria_3 + @candidate.job_criteria_4 + @candidate.job_criteria_5
-      if @candidate.final_candidate == true
-        rec_generator << @candidate
-        if @candidate_1.total_criteria_ranking > @candidate_2.total_criteria_ranking
-          candidate_1.first_name + " " + candidate_1.last_name
-        elsif @candidate_1.total_criteria_ranking == @candidate_2.total_criteria_ranking
-          "Either " + candidate_1.first_name + " " + candidate_1.last_name + " or " + candidate_2.first_name + " " + candidate_2.last_name + " would be a good fit for the position."
-        else
-          candidate_2.first_name + " " + candidate_2.last_name
-        end
-      end
-    end
-
 end

@@ -11,10 +11,9 @@ If you feel strongly about a different candidate after seeing the results we hig
 
 <h3>Ready?</h3>
 
-<button>Expecto Candidate Recommendation!</button>
+<!-- <button onclick="rec_generator">Expecto Candidate Recommendation!</button> -->
+<% recommended_candidates.each do |candidate| %>
+  <%= candidate.first_name + " " + candidate.last_name%>
+<% end %>
 
-
-Write the logic for the app to generate a cnadidate recommendation
-Logic should compare final 2-3 top candidates' total scores and make a recommendation of
-top candidate
-In generate_rec view when HM selects "generate candidate" view will return recommendation
+<a href="/jobs/<%= job.id %>/select_candidates"> Back to View Candidates </a>

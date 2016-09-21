@@ -11,4 +11,8 @@ module JobsHelper
       user.first_name
     end
   end
+
+  def recommended_candidates
+    Candidate.where(total_criteria: Candidate.maximum('total_criteria'))
+  end
 end

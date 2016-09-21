@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920134543) do
+ActiveRecord::Schema.define(version: 20160920234040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160920134543) do
     t.datetime "updated_at",     null: false
     t.text     "feedback"
     t.boolean  "top_candidate?"
+    t.integer  "total_criteria"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160920134543) do
     t.boolean  "archive_status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "hiring_manager"
   end
 
   create_table "user_departments", force: :cascade do |t|

@@ -28,7 +28,7 @@ class SelectCandidatesController < ApplicationController
       job_criteria_4: params[:job_criteria_4],
       job_criteria_5: params[:job_criteria_5]
     )
-    render 'show'
+    render 'thank_you'
   end
 
   def show
@@ -37,6 +37,7 @@ class SelectCandidatesController < ApplicationController
   end
 
   def edit
+    @header = "Update Candidate"
     @candidate = Candidate.find_by(id: params[:id])
     render 'edit'
   end
@@ -52,6 +53,7 @@ class SelectCandidatesController < ApplicationController
       job_criteria_4: params[:job_criteria_4],
       job_criteria_5: params[:job_criteria_5],
       top_candidate?: params[:top_candidate?],
+      total_criteria: ((params[:job_criteria_1]).to_i + (params[:job_criteria_2]).to_i + (params[:job_criteria_3]).to_i + (params[:job_criteria_4]).to_i + (params[:job_criteria_5]).to_i),
       feedback: params[:feedback]
     )
     redirect_to "/jobs/#{@candidate.job.id}/select_candidates"

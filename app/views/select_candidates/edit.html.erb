@@ -1,78 +1,38 @@
-<h1> Update Candidate </h1>
+<%= form_tag("/jobs/#{@candidate.job.id}/select_candidates/#{@candidate.id}", method: "patch") do %>
 
-<%= form_tag("/select_candidates/#{@candidate.id}", method: "patch") do %>
-<div>
-  <%= label_tag(:job_id) %>
-  <%= text_field_tag(:job_id, @candidate.job_id) %>
-</div>
+    <div><h3><%= @candidate.first_name %> <%= @candidate.last_name %></h3></div>
 
-<div>
-  <%= label_tag(@candidate.first_name) %>
-</div>
+    <div>Email: <%= @candidate.email %></div>
 
-<div>
-  <%= label_tag(@candidate.last_name) %>
-</div>
+    <div>Phone: <%= @candidate.phone %></div>
 
-<div>
-  <%= label_tag(@candidate.email) %>
-</div>
+     <div><%=link_to "Resume", @candidate.resume %></div>
 
-<div>
-  <%= label_tag(@candidate.phone) %>
-</div>
+     <div><%= link_to "Cover Letter", @candidate.cover_letter %></div>
 
-<div>
-  <%= label_tag(@candidate.resume) %>
-</div>
+     <div><%= link_to "References", @candidate.references %></div>
 
-<div>
-  <%= label_tag(@candidate.cover_letter) %>
-</div>
+    <div>Move Forward? <%= select_tag :move_forward, options_for_select(['Yes', 'Maybe', 'No'], @candidate.move_forward), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:references) %>
-  <%= text_field_tag(:references, @candidate.references) %>
-</div>
+    <div>Status? <%= @candidate.status %> <%= select_tag :status, options_for_select(['Prescreens', 'Phone Screens', 'Interivews', 'Reference Checks', 'Offers'], @candidate.status), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:move_forward) %>
-  <%= text_field_tag(:move_forward, @candidate.move_forward) %>
-</div>
+    <div>Feedback: <%= text_area_tag :feedback, @candidate.feedback %></div>
 
-<div>
-  <%= #label_tag(:status) %>
-  <%= #text_field_tag(:status, @candidate.status) %>
-</div>
+    <div>Top Candidate? <%= check_box_tag("@candidate.top_candidate?", value = false, checked = false, options = {}) %></div>
 
+    <div><%= @candidate.job.job_criteria_1 %> Skills <%= select_tag :job_criteria_1, options_for_select(1..5, @candidate.job_criteria_1), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:job_criteria_1) %>
-  <%= text_field_tag(:job_criteria_1, @candidate.job_criteria_1) %>
-</div>
+    <div><%= @candidate.job.job_criteria_2 %> Skills <%= select_tag :job_criteria_2, options_for_select(1..5, @candidate.job_criteria_2), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:job_criteria_2) %>
-  <%= text_field_tag(:job_criteria_2, @candidate.job_criteria_2) %>
-</div>
+    <div><%= @candidate.job.job_criteria_3 %> Skills <%= select_tag :job_criteria_3, options_for_select(1..5, @candidate.job_criteria_3), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:job_criteria_3) %>
-  <%= text_field_tag(:job_criteria_3, @candidate.job_criteria_3) %>
-</div>
+    <div><%= @candidate.job.job_criteria_4 %> Skills <%= select_tag :job_criteria_4, options_for_select(1..5, @candidate.job_criteria_4), include_blank: true %></div>
 
-<div>
-  <%= label_tag(:job_criteria_4) %>
-  <%= text_field_tag(:job_criteria_4, @candidate.job_criteria_4) %>
-</div>
+    <div><%= @candidate.job.job_criteria_5 %> Skills <%= select_tag :job_criteria_5, options_for_select(1..5, @candidate.job_criteria_5), include_blank: true%></div>
 
-<div>
-  <%= label_tag(:job_criteria_5) %>
-  <%= text_field_tag(:job_criteria_5, @candidate.job_criteria_5) %>
-</div>
+    <div>Total Score:<%= @candidate.total_criteria%></div>
 
-<div>
-  <%= submit_tag("Save Job") %>
-</div>
-
+    <div>
+      <%= submit_tag("Save Updates") %>
+    </div>
 <% end %>

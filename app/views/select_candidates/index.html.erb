@@ -2,6 +2,7 @@
 <table>
   <thead>
     <tr>
+      <th>Update</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
@@ -12,42 +13,39 @@
       <th>Move Forward?</th>
       <th>Status</th>
       <th>Feedback</th>
-      <th>Job Criteria 1 Score</th>
-      <th>Job Criteria 2 Score</th>
-      <th>Job Criteria 3 Score</th>
-      <th>Job Criteria 4 Score</th>
-      <th>Job Criteria 5 Score</th>
+      <th><%= @job.job_criteria_1%> Demonstrated Skill Level Score</th>
+      <th><%= @job.job_criteria_2%> Demonstrated Skill Level Score</th>
+      <th><%= @job.job_criteria_3%> Demonstrated Skill Level Score</th>
+      <th><%= @job.job_criteria_4%> Demonstrated Skill Level Score</th>
+      <th><%= @job.job_criteria_5%> Demonstrated Skill Level Score</th>
       <th>Top Candidate?</th>
       <th>Job Criteria Ranking Score</th>
     </tr>
   </thead>
   <tbody>
       <tr> <% @candidates.each do |candidate| %>
+        <td> <%=link_to "Make Updates to Candidate", "/jobs/#{candidate.job_id}/select_candidates/#{candidate.id}/edit"%></td>
         <td><%= candidate.first_name %></td>
         <td><%= candidate.last_name %></td>
-
         <td><%= candidate.email %></td>
         <td><%= candidate.phone %></td>
         <td> <%=link_to "Resume", candidate.resume %></td>
         <td> <%= link_to "Cover Letter", candidate.cover_letter %></td>
         <td> <%= link_to "References", candidate.references %></td>
-        <%= form_tag("/jobs/#{candidate.id}/select_candidates", method: "patch") do %>
-        <td> Move Forward? <%= select_tag :move_forward, options_for_select(['Yes', 'Maybe', 'No'], candidate.move_forward), include_blank: true %></td>
-        <td>Status? <%= candidate.status %> <%= select_tag :status, options_for_select(['Prescreens', 'Phone Screens', 'Interivews', 'Reference Checks', 'Offers'], candidate.status), include_blank: true %></td>
-        <td><%= text_area_tag :feedback %></td>
-        <td><%= candidate.job.job_criteria_1 %> Skills <%= select_tag :job_criteria_1, options_for_select(1..5, candidate.job_criteria_1), include_blank: true %></td>
-        <td><%= candidate.job.job_criteria_2 %> Skills <%= select_tag :job_criteria_2, options_for_select(1..5, candidate.job_criteria_2), include_blank: true %></td>
-        <td><%= candidate.job.job_criteria_3 %> Skills <%= select_tag :job_criteria_3, options_for_select(1..5, candidate.job_criteria_3), include_blank: true %></td>
-        <td><%= candidate.job.job_criteria_4 %> Skills <%= select_tag :job_criteria_4, options_for_select(1..5, candidate.job_criteria_4), include_blank: true %></td>
-        <td><%= candidate.job.job_criteria_5 %> Skills <%= select_tag :job_criteria_5, options_for_select(1..5, candidate.job_criteria_5), include_blank: true%></td>
-        <td><%= check_box_tag("candidate.top_candidate?", value = false, checked = false, options = {}) %></td>
-        <td> Total Score: <%= candidate.job_criteria_1 + candidate.job_criteria_2 + candidate.job_criteria_3 + candidate.job_criteria_4 + candidate.job_criteria_5%></td>
-        <td><%= button_to "Update Candidate", controller: "select_candidates", action: "update"  %> </td>
-          <% end %>
+        <td> <%= candidate.move_forward %></td>
+        <td> <%= candidate.status %> </td>
+        <td><%= candidate.feedback %></td>
+        <td><%= candidate.top_candidate? %></td>
+        <td><%=candidate.job_criteria_1%></td>
+        <td><%=candidate.job_criteria_2%></td>
+        <td><%=candidate.job_criteria_3%></td>
+        <td><%=candidate.job_criteria_4%></td>
+        <td><%=candidate.job_criteria_5%></td>
+        <td><%= candidate.total_criteria%></td>
       </tr>
   <% end %>
 </tbody>
 </table>
 </div>
 
-<div>  <p> <a href="/jobs/<%= @job.id %>/gen_rec"> Generate Recommendation </a> </p></div>
+<div> <a href="/jobs/<%= @job.id %>/gen_rec"> Generate Recommendation </a></div>
