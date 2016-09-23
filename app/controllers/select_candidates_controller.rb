@@ -12,23 +12,27 @@ class SelectCandidatesController < ApplicationController
   end
 
   def create
-    @candidate = @job.candidate.create(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone: params[:phone],
-      resume: params[:resume],
-      cover_letter: params[:cover_letter],
-      references: params[:references],
-      move_forward: params[:move_forward],
-      status: params[:status],
-      job_criteria_1: params[:job_criteria_1],
-      job_criteria_2: params[:job_criteria_2],
-      job_criteria_3: params[:job_criteria_3],
-      job_criteria_4: params[:job_criteria_4],
-      job_criteria_5: params[:job_criteria_5]
-    )
-    render 'thank_you'
+    if current_user.nil?
+      @candidate = @job.candidate.create(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        email: params[:email],
+        phone: params[:phone],
+        resume: params[:resume],
+        cover_letter: params[:cover_letter],
+        references: params[:references],
+        move_forward: params[:move_forward],
+        status: params[:status],
+        job_criteria_1: params[:job_criteria_1],
+        job_criteria_2: params[:job_criteria_2],
+        job_criteria_3: params[:job_criteria_3],
+        job_criteria_4: params[:job_criteria_4],
+        job_criteria_5: params[:job_criteria_5]
+      )
+      render 'thank_you'
+    else
+      redirect_to "company/#{job.company_id}d/jobs/#{job.id}/select_candidates"
+    end
   end
 
   def show

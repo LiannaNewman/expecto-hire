@@ -7,19 +7,17 @@
   <div class="color-bottom-line flex-controls-cl">
     <h3 class="line2 center standart-h3title"><span> Job List</span></h3>
     <ul class="slides">
-      <% @departments.each do |department| %>
-        <h2><%= department.department_name %></h2>
-        <% department.jobs.each do |job| %>
+      <% @company.jobs.each do |job| %>
+        <h2><%= job.department.department_name %></h2>
           <li class="slide">
             <h3>
-              <a href="/jobs/<%= job.id %>"> <%= job.job_title %> </a>
+              <a href="/company/<%= job.company_id %>/jobs/<%= job.id %>"> <%= job.job_title %> </a>
             </h3>
             <h4> Projected Start Date: <%= job.projected_start_date %></h4>
-              <a href="/jobs/<%= job.id %>/select_candidates"> View Candidates | </a>
-              <a href="/jobs/<%= job.id %>/edit"> Edit | </a>
+              <a href="/company/<%= job.company_id %>/jobs/<%= job.id %>/select_candidates"> View Candidates | </a>
+              <a href="/company/<%= job.company_id %>/jobs/<%= job.id %>/edit"> Edit | </a>
               <a data-confirm="Are you sure you want to delete this job?" data-method="delete" href="<%= job.id %>" rel="nofollow">Delete</a>
          </li>
-      <% end %>
       <% end %>
     </ul>
   </div>
@@ -27,7 +25,7 @@
 <div>
   <div>
     <ul>
-      <h3 class="line2 center standart-h3title"> <span><%= link_to 'Create a New Job', '/jobs/new' %> </span></h3>
+      <h3 class="line2 center standart-h3title"> <span><%= link_to 'Create a New Job', 'company_id/#{company.id}/jobs/new' %> </span></h3>
     </ul>
   </div>
 </div>

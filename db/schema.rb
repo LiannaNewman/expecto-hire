@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920234040) do
+ActiveRecord::Schema.define(version: 20160922192111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +45,17 @@ ActiveRecord::Schema.define(version: 20160920234040) do
     t.string   "logo"
   end
 
+  create_table "company_departments", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
-    t.string   "company_name"
-    t.integer  "company_id"
-    t.integer  "user_department_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160920234040) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "hiring_manager"
+    t.integer  "company_id"
   end
 
   create_table "user_departments", force: :cascade do |t|
@@ -101,6 +106,9 @@ ActiveRecord::Schema.define(version: 20160920234040) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "admin"
+    t.string   "token"
+    t.string   "uid"
+    t.string   "provider"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

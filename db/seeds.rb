@@ -20,6 +20,18 @@ department = Department.create([
   {department_name: "Muggle Relations"},
   {department_name: "Divination"}
 ])
+# company_ids = Company.all.map{|company| company.id}
+company_ids = []
+Company.all.each do |company|
+  company_ids << company.id
+end
+
+department_ids = []
+department_names = []
+Department.all.each do |department|
+  department_ids << deparment.id
+  department_names << deparment.department_name
+end
 
 100.times do
   first = Faker::Name.first_name
@@ -31,12 +43,22 @@ department = Department.create([
     email: first + '.' + last + Faker::Internet.free_email,
     password: password,
     password_confirmation: password,
-    admin: Faker::Boolean.boolean(0.2)
+    admin: Faker::Boolean.boolean(0.2),
+    company_id: company_ids.sample
   )
 end
 
 User.all.each do |user|
-  UserDepartment.create(user_id: user.id, department_id: Department.all.sample.id, company_id: Company.all.sample.id)
+  UserDepartment.create(user_id: user.id, department_id: department_ids.sample, company_id: company_ids.sample)
+end
+
+Company.all.each do |company|
+  CompanyDepartment.create(company_id: company.id.sample, department_id: department_ids.sample)
+end
+
+job_ids = []
+Jobs.all.each do |job|
+  job_ids << job.ids
 end
 
 80.times do
@@ -55,11 +77,13 @@ end
     job_criteria_2: Faker::Number.between(1, 5),
     job_criteria_3: Faker::Number.between(1, 5),
     job_criteria_4: Faker::Number.between(1, 5),
-    job_criteria_5: Faker::Number.between(1, 5)
+    job_criteria_5: Faker::Number.between(1, 5),
+    job_id: job_ids.sample
   )
 end
 
 15.times do
+  dept_samp = department_ids.sample
   job = Job.create(
     job_title: Faker::Name.title,
     salary: Faker::Number.between(48000, 80000),
@@ -69,6 +93,9 @@ end
     job_criteria_4: Faker::Hacker.adjective,
     job_criteria_5: Faker::Hacker.adjective,
     projected_start_date: Faker::Date.forward(70),
-    archive_status: Faker::Boolean.boolean
+    archive_status: Faker::Boolean.boolean,
+    department_id: dept_samp,
+    department_name: dept_samp.department_name,
+    company_id: company_ids.sample
   )
 end

@@ -1,6 +1,6 @@
 <h1> Make Updates to the Job Below: </h1>
 
-<%= form_tag("/jobs/#{@job.id}", method: "patch") do %>
+<%= form_tag("/company/#{job.company_id}/jobs/#{@job.id}", method: "patch") do %>
   <div>
     <%= label_tag(:job_title) %>
     <%= text_field_tag(:job_title, @job.job_title) %>
@@ -9,6 +9,11 @@
   <div>
     <%= label_tag(:department_name) %>
     <%= text_field_tag(:department_name, @job.department_name) %>
+  </div>
+
+  <div>
+    <%= label_tag(:hiring_manager) %>
+    <%= text_field_tag(:hiring_manager, @job.hiring_manager) %>
   </div>
 
   <div>
@@ -67,5 +72,5 @@
 <% end %>
 
 </div>
-  <p> <%= link_to "Back to Dashboard", "/jobs/dashboard" %></p>
+  <p> <%= link_to "Back to Dashboard", "/company/<%= job.company_id %>/jobs/dashboard" %></p>
 </div>

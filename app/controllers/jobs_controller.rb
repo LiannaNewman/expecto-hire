@@ -3,16 +3,18 @@ class JobsController < ApplicationController
 
     def index
       @header = "Welcome"
-      @jobs = Job.all
+      @jobs = Job.where(company_id: current_user.company.id)
     end
 
     def dashboard
       if current_user.admin == true
-        @departments = Department.where(user_department_id: params[:user_department_id])
-      else
+        @company = Company.find_by(id: current_user.company_id)
         @departments = Department.where(id: current_user.department_id)
+        @jobs = Job.where(company_id: current_user.company_id)
+        @company.departments
+      else
+        @departments = Department.where(department_id: company_department.department_id, company_id: company_department.company_id)
       end
-      @jobs = Job.where(department_id: params[:department_id])
       render 'dashboard.html.erb'
     end
 
@@ -37,7 +39,9 @@ class JobsController < ApplicationController
         stage: params[:stage],
         projected_start_date: params[:projected_start_date],
         timeline_status: params[:timeline_status],
-        archive_status: params[:archive_status]
+        archive_status: params[:archive_status],
+        hiring_manager: params[:hiring_manager],
+        company_id: current_user.company_id
       )
       render "new.html.erb"
     end
@@ -69,7 +73,8 @@ class JobsController < ApplicationController
         stage: params[:stage],
         projected_start_date: params[:projected_start_date],
         timeline_status: params[:timeline_status],
-        archive_status: params[:archive_status]
+        archive_status: params[:archive_status],
+        hiring_manager: params[:hiring_manager]
       )
       render "show"
     end
@@ -87,4 +92,28 @@ class JobsController < ApplicationController
       @candidate = Candidate.find_by(job_id: params[:id])
     end
 
+    def event
+      @event = Event.new
+      @event = {
+        summary: params[:summary],
+        description: params[:description],
+        location: params[:location],
+        start_date_time: params[:start_date_time],
+        end_date_time: params[:end_date_time],
+        attendees: params[:attendees]
+      }
+      client = Google::APIClient.new
+      client.authorization.access_token = current_user.token
+      service = client.discovered_api('calendar', 'v3')
+
+      @set_event = client.execute(
+                  api_method: service.events.insert,
+                  params: {
+                    calendarId: current_user.email,
+                    sendNotifications: true
+                  },
+                  body: JSON.dump(@event),
+                  headers: { 'Content-Type' => 'application/json' }
+                )
+    end
 end

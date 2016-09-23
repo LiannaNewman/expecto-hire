@@ -29,7 +29,9 @@ gem 'faker'
 gem 'bootstrap-sass'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
-gem 'google-api-client'
+gem 'google-api-client' #, :require => 'google/api_client'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do

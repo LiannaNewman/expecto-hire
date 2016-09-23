@@ -65,8 +65,9 @@
               <ul class="nav">
 
                 <li><a href="/jobs">Home</a> </li>
-
-                <li><a href="/jobs/dashboard"> Dashboard </a> </li>
+								<% if current_user %>
+                	<li><a href="/company/<%= current_user.company_id %>/jobs/dashboard"> Dashboard </a> </li>
+								<% end %>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> About <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="pricing.html">Pricing tables</a></li>
