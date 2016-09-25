@@ -2,13 +2,13 @@
 
 <div>
   <ul>
-    <h4><%= link_to 'Create a New Job', '/jobs/new' %></h4>
+    <h4><%= link_to 'Create a New Job', "/company/#{current_user.company_id}/jobs/new" %></h4>
   </ul>
 </div>
 
 <div>
   <ul>
-    <h4><%= link_to 'Go to Dashboard', '/jobs/dashboard' %></h4>
+    <h4><%= link_to 'Go to Dashboard', "/company/#{current_user.company_id}/jobs/dashboard" %></h4>
   </ul>
 </div>
 

@@ -41,7 +41,8 @@ class JobsController < ApplicationController
         timeline_status: params[:timeline_status],
         archive_status: params[:archive_status],
         hiring_manager: params[:hiring_manager],
-        company_id: current_user.company_id
+        company_id: current_user.company_id,
+        department_id: department.department_name.department_id
       )
       render "new.html.erb"
     end
@@ -92,8 +93,7 @@ class JobsController < ApplicationController
       @candidate = Candidate.find_by(job_id: params[:id])
     end
 
-    def event
-      @event = Event.new
+    def events
       @event = {
         summary: params[:summary],
         description: params[:description],

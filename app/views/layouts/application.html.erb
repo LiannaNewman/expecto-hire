@@ -64,43 +64,25 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
 
-                <li><a href="/jobs">Home</a> </li>
 								<% if current_user %>
+									<li><a href="/company/<%= current_user.company_id %>/jobs">Home</a> </li>
                 	<li><a href="/company/<%= current_user.company_id %>/jobs/dashboard"> Dashboard </a> </li>
+									<% else%>
+									<li><a href="/">Home</a> </li>
 								<% end %>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:"> About <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="pricing.html">Pricing tables</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a href="javascript:" class="dropdown-toggle" data-toggle="dropdown"> Contact <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="about_us.html">About & FAQ</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="team.html">Team</a></li>
-					<li><a href="features.html">Features</a></li>
-					<li><a href="components.html">Components</a></li>
-					<li><a href="404.html">404 page</a></li>
-					<li><a href="sitemap.html">Sitemap</a></li>
 
-                  </ul>
+								<% if current_user == nil %>
+								<li> <a href="/companies/new"> Register Your Company</a> </li>
+								<% end %>
+                <li class="dropdown"><a href="/welcomes/about"> About</a></li>
+                <li class="dropdown"><a href="/welcomes/contact"> Contact </a>
+
                 </li>
 								<% if current_user %>
                 	<li> <%= link_to "Settings", "/users/edit" %> </li>
 								<% end %>
 			<% if current_user.nil? %>
 				<li class="dropdown"><a href="/users/sign_up" class="dropdown-toggle" data-toggle="dropdown">Log In</a>
-
-					<ul class="dropdown-menu">
-						<li>
-						<div style="padding: 15px; padding-bottom: 0px;">
-							<form method="post" action="login" accept-charset="UTF-8">
-								<input style="margin-bottom: 15px;" type="text" placeholder="email" id="email_field" name="email">
-								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password_field" name="password">
-								<input style="float: left; margin-right: 10px;" type="checkbox" name="remember_me" id="remember_me" value="1">
-								<label class="string optional" for="sign-in"> Remember me</label>
-							</form>
-						</div>
 						</li>
 						</ul>
 					</li>

@@ -1,5 +1,5 @@
 class SelectCandidatesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:new, :create]
   def index
     @job = Job.find_by(id: params[:id])
     @header = "#{@job.job_title} - Candidate List"
@@ -7,13 +7,16 @@ class SelectCandidatesController < ApplicationController
   end
 
   def new
+    @company = Company.find_by(id: params[:company_id])
+    @job = Job.find_by(id: params[:job_id])
     @candidate = Candidate.new
     render 'new'
   end
 
   def create
-    if current_user.nil?
-      @candidate = @job.candidate.create(
+      @company = Company.find_by(id: params[:company_id])
+      @job = Job.find_by(id: params[:job_id])
+      @candidate = Candidate.create(
         first_name: params[:first_name],
         last_name: params[:last_name],
         email: params[:email],
@@ -27,12 +30,10 @@ class SelectCandidatesController < ApplicationController
         job_criteria_2: params[:job_criteria_2],
         job_criteria_3: params[:job_criteria_3],
         job_criteria_4: params[:job_criteria_4],
-        job_criteria_5: params[:job_criteria_5]
+        job_criteria_5: params[:job_criteria_5],
+        job_id: @job.id
       )
       render 'thank_you'
-    else
-      redirect_to "company/#{job.company_id}d/jobs/#{job.id}/select_candidates"
-    end
   end
 
   def show

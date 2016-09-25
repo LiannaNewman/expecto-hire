@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 5.times do
   company = Company.create(
     company_name: Faker::Company.name,
@@ -33,7 +25,8 @@ Department.all.each do |department|
   department_names << deparment.department_name
 end
 
-100.times do
+20.times do
+  dept_samp1 = department_ids.sample
   first = Faker::Name.first_name
   last = Faker::Name.last_name
   password = Faker::Internet.password(8)
@@ -44,8 +37,15 @@ end
     password: password,
     password_confirmation: password,
     admin: Faker::Boolean.boolean(0.2),
-    company_id: company_ids.sample
+    company_id: company_ids.sample,
+    department_id: dept_samp1,
+    department_name: dept_samp1.department_name
   )
+end
+
+user_names = []
+User.each do |user|
+  user_names << (user.first_name + " " + user.last_name)
 end
 
 User.all.each do |user|
@@ -56,12 +56,32 @@ Company.all.each do |company|
   CompanyDepartment.create(company_id: company.id.sample, department_id: department_ids.sample)
 end
 
+30.times do
+  dept_samp = department_ids.sample
+  job = Job.create(
+    job_title: Faker::Name.title,
+    salary: Faker::Number.between(48000, 80000),
+    description: Faker::Hipster.paragraphs,
+    job_criteria_1: Faker::Hacker.adjective,
+    job_criteria_2: Faker::Hacker.adjective,
+    job_criteria_3: Faker::Hacker.adjective,
+    job_criteria_4: Faker::Hacker.adjective,
+    job_criteria_5: Faker::Hacker.adjective,
+    projected_start_date: Faker::Date.forward(70),
+    archive_status: Faker::Boolean.boolean,
+    department_id: dept_samp,
+    department_name: dept_samp.department_name,
+    company_id: company_ids.sample,
+    hiring_manager: user_names
+  )
+end
+
 job_ids = []
 Jobs.all.each do |job|
   job_ids << job.ids
 end
 
-80.times do
+100.times do
   first = Faker::Name.first_name
   last = Faker::Name.last_name
   candidate = Candidate.create(
@@ -79,23 +99,5 @@ end
     job_criteria_4: Faker::Number.between(1, 5),
     job_criteria_5: Faker::Number.between(1, 5),
     job_id: job_ids.sample
-  )
-end
-
-15.times do
-  dept_samp = department_ids.sample
-  job = Job.create(
-    job_title: Faker::Name.title,
-    salary: Faker::Number.between(48000, 80000),
-    job_criteria_1: Faker::Hacker.adjective,
-    job_criteria_2: Faker::Hacker.adjective,
-    job_criteria_3: Faker::Hacker.adjective,
-    job_criteria_4: Faker::Hacker.adjective,
-    job_criteria_5: Faker::Hacker.adjective,
-    projected_start_date: Faker::Date.forward(70),
-    archive_status: Faker::Boolean.boolean,
-    department_id: dept_samp,
-    department_name: dept_samp.department_name,
-    company_id: company_ids.sample
   )
 end

@@ -1,8 +1,8 @@
-<h1> Apply to <%= job_dept_id(current_user).job_title%> Position </h1>
+<h1> Apply to the <%=@job.job_title%> Position at <%= @company.company_name %></h1>
 
 <h4>Job Description</h4>
 
-<%= form_tag("jobs/id/select_candidates/#{@candidate.id}", method: "post") do %>
+<%= form_tag("/company/#{@company.id}/jobs/#{@job.id}/select_candidates", method: "post") do %>
 
 <div>
   <%= label_tag(:first_name) %>

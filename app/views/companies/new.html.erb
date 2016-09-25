@@ -1,0 +1,13 @@
+<h1>Register Your Company with ExpectoHire Today!</h1>
+
+<%= form_tag "/companies/new", method: :post do %>
+  <%= text_field_tag(
+      :company_name,
+      params[:company_name],
+      placeholder: "Company Name",
+  ) %>
+  <div>
+    <%= submit_tag("Save Company") %>
+  </div>
+
+  <% end %>

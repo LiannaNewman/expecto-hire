@@ -23,7 +23,7 @@
 
 <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=utit74389oml5pqntun2fdl088@group.calendar.google.com&amp;color=%23AB8B00&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <div>
-<%= form_tag("https://www.googleapis.com/calendar/v3/calendars/calendarId/events", method: "post") do %>
+<%= form_tag("/company/#{current_user.company_id}/jobs/#{@job.id}/events", method: "post") do %>
   <div>
     <%= label_tag(:summary) %>
     <%= text_field_tag(:summary) %>
