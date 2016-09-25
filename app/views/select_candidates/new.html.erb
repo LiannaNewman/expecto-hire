@@ -2,7 +2,7 @@
 
 <h4>Job Description</h4>
 
-<%= form_tag("/company/#{@company.id}/jobs/#{@job.id}/select_candidates", method: "post") do %>
+<%= form_tag("/company/#{@company.id}/jobs/#{@job.id}/select_candidates", method: "post", enctype: "multipart/form-data") do %>
 
 <div>
   <%= label_tag(:first_name) %>
@@ -26,19 +26,23 @@
 
 <div>
   <%= label_tag(:resume) %>
-  <%= text_field_tag(:resume, @candidate.resume) %>
+  <%= file_field_tag(:resume) %>
 </div>
 
 <div>
   <%= label_tag(:cover_letter) %>
-  <%= text_field_tag(:cover_letter, @candidate.cover_letter) %>
+  <%= file_field_tag(:cover_letter) %>
 </div>
 
 <div>
   <%= label_tag(:references) %>
-  <%= text_field_tag(:references, @candidate.references) %>
+  <%= file_field_tag(:references) %>
 </div>
 
+<div>
+
+  
+</div>
 <div>
   <%= submit_tag("Submit Application") %>
 </div>

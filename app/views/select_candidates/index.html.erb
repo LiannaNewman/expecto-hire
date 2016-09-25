@@ -29,7 +29,7 @@
         <td><%= candidate.last_name %></td>
         <td><%= candidate.email %></td>
         <td><%= candidate.phone %></td>
-        <td> <%=link_to "Resume", candidate.resume %></td>
+        <td><%= image_tag(candidate.resume.url)%> </td>
         <td> <%= link_to "Cover Letter", candidate.cover_letter %></td>
         <td> <%= link_to "References", candidate.references %></td>
         <td> <%= candidate.move_forward %></td>

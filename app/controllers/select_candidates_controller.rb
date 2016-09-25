@@ -1,9 +1,9 @@
 class SelectCandidatesController < ApplicationController
   before_action :authenticate_user!, :except => [:new, :create]
   def index
-    @job = Job.find_by(id: params[:id])
+    @job = Job.find_by(id: params[:job_id])
     @header = "#{@job.job_title} - Candidate List"
-    @candidates = Candidate.where(job_id: params[:id])
+    @candidates = Candidate.where(job_id: params[:candidate_id])
   end
 
   def new
@@ -43,12 +43,12 @@ class SelectCandidatesController < ApplicationController
 
   def edit
     @header = "Update Candidate"
-    @candidate = Candidate.find_by(id: params[:id])
+    @candidate = Candidate.find_by(id: params[:candidate_id])
     render 'edit'
   end
 
   def update
-    @candidate = Candidate.find_by(id: params[:id])
+    @candidate = Candidate.find_by(id: params[:candidate_id])
     @candidate.update(
       move_forward: params[:move_forward],
       status: params[:status],
@@ -65,8 +65,9 @@ class SelectCandidatesController < ApplicationController
   end
 
   def destroy
-    @candidate = Candidate.find_by(id: params[:id])
+    @candidate = Candidate.find_by(id: params[:candidate_id])
     @candidate.destroy
     render 'index.html.erb'
   end
+
 end

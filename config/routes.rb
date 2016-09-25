@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
-  delete '/companies/:company_id' => 'companies#destroy'
+  delete '/companies/company_id' => 'companies#destroy'
 
   get '/company/:company_id/jobs' => 'jobs#index'
   get '/company/:company_id/jobs/dashboard' => 'jobs#dashboard'

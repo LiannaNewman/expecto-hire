@@ -28,6 +28,7 @@ gem 'faker'
 # Use ActiveModel has_secure_password
 gem 'bootstrap-sass'
 # gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave'
 # Use Capistrano for deployment
 gem 'google-api-client' #, :require => 'google/api_client'
 gem 'omniauth'
