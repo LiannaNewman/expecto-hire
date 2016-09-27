@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   get '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
+  get '/companies/registered' => 'companies#show'
+  get '/companies/:company_id/edit' => 'companies#edit'
+  patch '/companies/:company_id' => 'companies#update'
   delete '/companies/company_id' => 'companies#destroy'
 
   get '/company/:company_id/jobs' => 'jobs#index'
@@ -19,10 +22,10 @@ Rails.application.routes.draw do
   get '/company/:company_id/jobs/:job_id/select_candidates' => 'select_candidates#index'
   get '/company/:company_id/jobs/:job_id/select_candidates/new' => 'select_candidates#new'
   post '/company/:company_id/jobs/:job_id/select_candidates' => 'select_candidates#create'
-  get '/company/:company_id/jobs/:job_id/select_candidates/:candidates_id' => 'select_candidates#show'
-  get '/company/:company_id/jobs/:job_id/select_candidates/:candidates_id/edit' => 'select_candidates#edit'
-  patch '/company/:company_id/jobs/:job_id/select_candidates/:candidates_id' => 'select_candidates#update'
-  delete '/company/:company_id/jobs/:job_id/select_candidates/:candidates_id' => 'select_candidates#destroy'
+  get '/company/:company_id/jobs/:job_id/select_candidates/:candidate_id' => 'select_candidates#show'
+  get '/company/:company_id/jobs/:job_id/select_candidates/:candidate_id/edit' => 'select_candidates#edit'
+  patch '/company/:company_id/jobs/:job_id/select_candidates/:candidate_id' => 'select_candidates#update'
+  delete '/company/:company_id/jobs/:job_id/select_candidates/:candidate_id' => 'select_candidates#destroy'
 
   get '/' => 'welcomes#index'
 end

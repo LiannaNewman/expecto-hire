@@ -79,7 +79,14 @@
 
                 </li>
 								<% if current_user %>
-                	<li> <%= link_to "Settings", "/users/edit" %> </li>
+								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/users/edit"> Settings <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li> <a href="/users/edit"> Account Settings</a> </li>
+										<% 	if current_user.admin? == true %>
+											<li> <a href="/companies/<%= current_user.company_id %>/edit"> Company Settings</a> </li>
+											<% end %>
+										</ul>
+								</li>
 								<% end %>
 			<% if current_user.nil? %>
 				<li class="dropdown"><a href="/users/sign_up" class="dropdown-toggle" data-toggle="dropdown">Log In</a>
@@ -111,6 +118,21 @@
 				<h1><%= @header %></h1>
 				<!--END SOCIAL PANEL UNDER MENU-->
 			</div>
+	<% flash.each do |name, message| %>
+  <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <% if message.is_a?(Array) %>
+    <ul>
+      <% message.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+  <% end %>
+
 				<%= yield %>
 			<!-- END HEADER headertop -->
 

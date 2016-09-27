@@ -1,9 +1,10 @@
 class SelectCandidatesController < ApplicationController
   before_action :authenticate_user!, :except => [:new, :create]
   def index
+    @company = Company.find_by(id: params[:company_id])
     @job = Job.find_by(id: params[:job_id])
     @header = "#{@job.job_title} - Candidate List"
-    @candidates = Candidate.where(job_id: params[:candidate_id])
+    @candidates = @job.candidates
   end
 
   def new
@@ -43,11 +44,15 @@ class SelectCandidatesController < ApplicationController
 
   def edit
     @header = "Update Candidate"
+    @company = Company.find_by(id: params[:company_id])
+    @job = Job.find_by(id: params[:job_id])
     @candidate = Candidate.find_by(id: params[:candidate_id])
     render 'edit'
   end
 
   def update
+    @company = Company.find_by(id: params[:company_id])
+    @job = Job.find_by(id: params[:job_id])
     @candidate = Candidate.find_by(id: params[:candidate_id])
     @candidate.update(
       move_forward: params[:move_forward],
@@ -61,7 +66,7 @@ class SelectCandidatesController < ApplicationController
       total_criteria: ((params[:job_criteria_1]).to_i + (params[:job_criteria_2]).to_i + (params[:job_criteria_3]).to_i + (params[:job_criteria_4]).to_i + (params[:job_criteria_5]).to_i),
       feedback: params[:feedback]
     )
-    redirect_to "/jobs/#{@candidate.job.id}/select_candidates"
+    redirect_to "/company/#{@company.id}/jobs/#{@candidate.job.id}/select_candidates"
   end
 
   def destroy

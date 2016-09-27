@@ -1,4 +1,4 @@
-<%= form_tag("/jobs/#{@candidate.job.id}/select_candidates/#{@candidate.id}", method: "patch") do %>
+  <%= form_tag("/company/#{@company.id}/jobs/#{@job.id}/select_candidates/#{@candidate.id}", method: "patch") do %>
 
     <div><h3><%= @candidate.first_name %> <%= @candidate.last_name %></h3></div>
 
@@ -6,19 +6,17 @@
 
     <div>Phone: <%= @candidate.phone %></div>
 
-     <div><%=link_to "Resume", @candidate.resume %></div>
+    <div><%= image_tag(@candidate.resume.url)%> </div>
 
-     <div><%= link_to "Cover Letter", @candidate.cover_letter %></div>
+    <div> <%= image_tag(@candidate.cover_letter.url) %></div>
 
-     <div><%= link_to "References", @candidate.references %></div>
+    <div> <%= image_tag(@candidate.references) %></div>
 
     <div>Move Forward? <%= select_tag :move_forward, options_for_select(['Yes', 'Maybe', 'No'], @candidate.move_forward), include_blank: true %></div>
 
     <div>Status? <%= @candidate.status %> <%= select_tag :status, options_for_select(['Prescreens', 'Phone Screens', 'Interivews', 'Reference Checks', 'Offers'], @candidate.status), include_blank: true %></div>
 
     <div>Feedback: <%= text_area_tag :feedback, @candidate.feedback %></div>
-
-    <div>Top Candidate? <%= check_box_tag("@candidate.top_candidate?", value = false, checked = false, options = {}) %></div>
 
     <div><%= @candidate.job.job_criteria_1 %> Skills <%= select_tag :job_criteria_1, options_for_select(1..5, @candidate.job_criteria_1), include_blank: true %></div>
 
@@ -35,4 +33,9 @@
     <div>
       <%= submit_tag("Save Updates") %>
     </div>
+
 <% end %>
+
+<div>
+  <a href="/company/<%= @company.id %>/jobs/<%= @job.id %>/select_candidates"> Return to Candidate List </a>
+</div>

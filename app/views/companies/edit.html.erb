@@ -1,0 +1,19 @@
+<h2> Update Company Info </h2>
+
+<%= form_tag "/companies/#{@company.id}", method: :patch do %>
+
+  <div> Company Name Change?
+  <%= text_field_tag(:company_name, params[:company_name], placeholder: @company.company_name) %> </div>
+
+  <div> Change/Update Logo?
+    <%= label_tag(:logo) %>
+    <%= file_field_tag(:logo) %>
+  </div>
+
+  <div>
+    <%= submit_tag("Save Updates!") %>
+  </div>
+<% end %>
+
+<a href="/companies/registered"><h4>Cancel Changes</h4></a>
+<a href="/company/<%= @current_user.company_id%>/jobs"><h4> << Back to Dashboard </h4></a>

@@ -1,0 +1,20 @@
+<h1>Here's the list of registered Companies:</h1>
+<div class="scrollit">
+<table>
+  <thead>
+    <tr>
+      <th>Update</th>
+      <th>Company</th>
+      <th>Logo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><% @companies.each do |company| %></tr>
+      <td><h6><%=link_to "Click here to log-in to Make Updates to Your Company if you're an admin.", "/companies/#{company.id}/edit"%></h6></td>
+      <td><%= company.company_name %></td>
+      <td><%= image_tag(company.logo)%> </td>
+    </tr>
+  <% end %>
+ </tbody>
+ </table>
+</div>

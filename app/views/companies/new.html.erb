@@ -1,11 +1,17 @@
 <h1>Register Your Company with ExpectoHire Today!</h1>
 
-<%= form_tag "/companies/new", method: :post do %>
-  <%= text_field_tag(
-      :company_name,
-      params[:company_name],
-      placeholder: "Company Name",
-  ) %>
+<%= form_tag("/companies", method: :post, enctype: "multipart/form-data")do %>
+  <div>
+    <%= text_field_tag(
+        :company_name,
+        params[:company_name],
+        placeholder: "Company Name",
+    ) %>
+  </div>
+  <div>
+    Upload Your Company <%= label_tag(:logo) %>
+    <%= file_field_tag(:logo) %>
+  </div>
   <div>
     <%= submit_tag("Save Company") %>
   </div>

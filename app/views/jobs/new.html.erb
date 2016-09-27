@@ -61,6 +61,16 @@
   </div>
 
   <div>
+    <%= label_tag(:hiring_manager) %>
+    <%= text_field_tag(:hiring_manager, @job.hiring_manager) %>
+  </div>
+
+  <div>
+    <%= label_tag(:archive_status) %>
+    <%= text_field_tag(:tiarchive_status, @job.archive_status) %>
+ </div>
+
+  <div>
     <%= submit_tag("Save Job") %>
   </div>
 <% end %>

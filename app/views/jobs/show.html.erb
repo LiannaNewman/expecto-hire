@@ -20,8 +20,7 @@
     <li> <h4> 4: <%= @job.job_criteria_4 %></h4></li>
     <li> <h4> 5: <%= @job.job_criteria_5 %></h4></li>
 </div>
-
-<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=utit74389oml5pqntun2fdl088@group.calendar.google.com&amp;color=%23AB8B00&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=jur2ulhe6n55s61q8bium7k5u4%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <div>
 <%= form_tag("/company/#{current_user.company_id}/jobs/#{@job.id}/events", method: "post") do %>
   <div>

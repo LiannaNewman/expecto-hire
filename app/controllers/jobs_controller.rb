@@ -8,7 +8,7 @@ class JobsController < ApplicationController
 
     def dashboard
       if current_user.admin == true
-        @company = Company.find_by(id: current_user.company_id)
+        @company = Company.find_by(id: params[:company_id])
         @departments = Department.where(id: current_user.department_id)
         @jobs = Job.where(company_id: current_user.company_id)
         @company.departments
@@ -42,24 +42,24 @@ class JobsController < ApplicationController
         archive_status: params[:archive_status],
         hiring_manager: params[:hiring_manager],
         company_id: current_user.company_id,
-        department_id: department.department_name.department_id
+        department_id: current_user.department_id
       )
       render "new.html.erb"
     end
 
     def show
-      @job = Job.find_by(id: params[:id])
+      @job = Job.find_by(id: params[:job_id])
       @header = @job.job_title
       render "show"
     end
 
     def edit
-      @job = Job.find_by(id: params[:id])
+      @job = Job.find_by(id: params[:job_id])
       render "edit.html.erb"
     end
 
     def update
-      @job = Job.find_by(id: params[:id])
+      @job = Job.find_by(id: params[:job_id])
       @job.update(
         department_id: params[:department_id],
         job_title: params[:job_title],
@@ -81,16 +81,16 @@ class JobsController < ApplicationController
     end
 
     def destroy
-      @job = Job.find_by(id: params[:id])
+      @job = Job.find_by(id: params[:job_id])
       @job.destroy
       flash[:success] = "The #{@job.job_title} position has been deleted!"
       redirect_to "dashboard.html.erb"
     end
 
     def gen_rec
-      @job = Job.find_by(id: params[:id])
+      @job = Job.find_by(id: params[:job_id])
       @header = "Recommendation Generator"
-      @candidate = Candidate.find_by(job_id: params[:id])
+      @candidate = Candidate.find_by(job_id: params[:job_id])
     end
 
     def events
@@ -102,11 +102,11 @@ class JobsController < ApplicationController
         end_date_time: params[:end_date_time],
         attendees: params[:attendees]
       }
-      client = Google::APIClient.new
-      client.authorization.access_token = current_user.token
-      service = client.discovered_api('calendar', 'v3')
+      calendar = Google::Apis::CalendarV3::CalendarService.new
+      calendar.authorization.access_token = current_user.token
+      service = calendar.discovered_api('calendar', 'v3')
 
-      @set_event = client.execute(
+      @set_event = calendar.execute(
                   api_method: service.events.insert,
                   params: {
                     calendarId: current_user.email,

@@ -30,7 +30,7 @@ gem 'bootstrap-sass'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 # Use Capistrano for deployment
-gem 'google-api-client' #, :require => 'google/api_client'
+gem 'google-api-client', :require => 'google/apis'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 # gem 'capistrano-rails', group: :development

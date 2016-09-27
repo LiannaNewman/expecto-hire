@@ -24,14 +24,14 @@
   </thead>
   <tbody>
       <tr> <% @candidates.each do |candidate| %>
-        <td> <%=link_to "Make Updates to Candidate", "/jobs/#{candidate.job_id}/select_candidates/#{candidate.id}/edit"%></td>
+        <td> <%=link_to "Make Updates to Candidate", "/company/#{@company.id}/jobs/#{candidate.job_id}/select_candidates/#{candidate.id}/edit"%></td>
         <td><%= candidate.first_name %></td>
         <td><%= candidate.last_name %></td>
         <td><%= candidate.email %></td>
         <td><%= candidate.phone %></td>
         <td><%= image_tag(candidate.resume.url)%> </td>
-        <td> <%= link_to "Cover Letter", candidate.cover_letter %></td>
-        <td> <%= link_to "References", candidate.references %></td>
+        <td> <%= image_tag(candidate.cover_letter.url) %></td>
+        <td> <%= image_tag(candidate.references.url) %></td>
         <td> <%= candidate.move_forward %></td>
         <td> <%= candidate.status %> </td>
         <td><%= candidate.feedback %></td>
@@ -48,4 +48,5 @@
 </table>
 </div>
 
-<div> <a href="/jobs/<%= @job.id %>/gen_rec"> Generate Recommendation </a></div>
+<div> <a href="company/<%= @company.id %>/jobs/<%= @job.id %>/gen_rec"> Generate Recommendation </a></div>
+<div> <a href="company/<%= @company.id %>/jobs/dashboard"> << Back to Dashboard</a> </div>
