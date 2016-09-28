@@ -2,16 +2,6 @@
 
     <div><h3><%= @candidate.first_name %> <%= @candidate.last_name %></h3></div>
 
-    <div>Email: <%= @candidate.email %></div>
-
-    <div>Phone: <%= @candidate.phone %></div>
-
-    <div><%= image_tag(@candidate.resume.url)%> </div>
-
-    <div> <%= image_tag(@candidate.cover_letter.url) %></div>
-
-    <div> <%= image_tag(@candidate.references) %></div>
-
     <div>Move Forward? <%= select_tag :move_forward, options_for_select(['Yes', 'Maybe', 'No'], @candidate.move_forward), include_blank: true %></div>
 
     <div>Status? <%= @candidate.status %> <%= select_tag :status, options_for_select(['Prescreens', 'Phone Screens', 'Interivews', 'Reference Checks', 'Offers'], @candidate.status), include_blank: true %></div>
@@ -33,6 +23,12 @@
     <div>
       <%= submit_tag("Save Updates") %>
     </div>
+
+    <div><iframe src= <%= @candidate.resume.url %> width="600" height="780" style="border: none;"> </iframe></div>
+
+    <div><iframe src= <%= @candidate.cover_letter.url %> width="600" height="780" style="border: none;"> </iframe></div>
+
+    <div><iframe src= <%= @candidate.references %> width="600" height="780" style="border: none;"> </iframe></div>
 
 <% end %>
 

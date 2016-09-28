@@ -1,19 +1,21 @@
-<h1>Welcome to the Candidate Recommendation Generator!</h1>
+<h3>Welcome to the Candidate Recommendation Generator!</h3>
 
-<h4>Let's prepare to generate a candidate recommendation for the <%= @job.job_title %> Position!
+<h5>Let's prepare to generate a candidate recommendation for the <%= @job.job_title %> Position!
 
 Firstly please note the final decision of whom to hire is entirely up to you and your team.
 
 The candidate recommendation generator will take into account the job criteria scores you
 listed for the candidates.
 
-If you feel strongly about a different candidate after seeing the results we highly recommend you go with your "gut" so to speak.</h4>
+If you feel strongly about a different candidate after seeing the results we highly recommend you go with your "gut" so to speak.</h5>
 
-<h3>Ready?</h3>
+<h5>Ready? We Recommend</h5>
 
 <!-- <button onclick="rec_generator">Expecto Candidate Recommendation!</button> -->
 <% recommended_candidates.each do |candidate| %>
-  <%= candidate.first_name + " " + candidate.last_name%>
+  <h2><%= candidate.first_name + " " + candidate.last_name%></h2>
 <% end %>
 
-<a href="/jobs/<%= job.id %>/select_candidates"> Back to View Candidates </a>
+<div>
+  <a href="/company/<%= @company.id %>/jobs/<%= @job.id %>/select_candidates"> Back to View Candidates </a>
+</div>

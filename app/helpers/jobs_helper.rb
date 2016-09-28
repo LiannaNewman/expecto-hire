@@ -13,6 +13,8 @@ module JobsHelper
   end
 
   def recommended_candidates
-    Candidate.where(total_criteria: Candidate.maximum('total_criteria'))
+    # Candidate.where(total_criteria: Candidate.maximum('total_criteria') && @candidate.job_id == params[:job_id])
+    @candidate = Candidate.where(job_id: params[:job_id])
+    @candidate.where(total_criteria: @candidate.maximum("total_criteria"))
   end
 end

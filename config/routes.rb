@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/company/:company_id/jobs' => 'jobs#index'
   get '/company/:company_id/jobs/dashboard' => 'jobs#dashboard'
+  get '/company/:company_id/jobs/dashboard2' => 'jobs#dashboard2'
+  get '/company/:company_id/jobs/dashboard3' => 'jobs#dashboard3'
   get '/company/:company_id/jobs/new' => 'jobs#new'
   post '/company/:company_id/jobs' => 'jobs#create'
   get '/company/:company_id/jobs/:job_id' => 'jobs#show'

@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
     before_action :authenticate_user!
-
     def index
       @header = "Welcome"
       @jobs = Job.where(company_id: current_user.company.id)
@@ -9,13 +8,23 @@ class JobsController < ApplicationController
     def dashboard
       if current_user.admin == true
         @company = Company.find_by(id: params[:company_id])
-        @departments = Department.where(id: current_user.department_id)
         @jobs = Job.where(company_id: current_user.company_id)
         @company.departments
       else
         @departments = Department.where(department_id: company_department.department_id, company_id: company_department.company_id)
       end
       render 'dashboard.html.erb'
+    end
+
+    def dashboard3
+        @company = Company.find_by(id: params[:company_id])
+        @departments = Department.where(id: current_user.department_id)
+        @jobs = Job.where(company_id: current_user.company_id)
+        @company.departments
+        #@departments = Department.where(department_id: company_department.department_id, company_id: company_department.company_id)
+    end
+
+    def dashboard2
     end
 
     def new
@@ -48,7 +57,9 @@ class JobsController < ApplicationController
     end
 
     def show
+      @company = Company.find_by(id: params[:company_id])
       @job = Job.find_by(id: params[:job_id])
+      @department = Department.find_by(id: @job.department_id)
       @header = @job.job_title
       render "show"
     end
@@ -61,7 +72,6 @@ class JobsController < ApplicationController
     def update
       @job = Job.find_by(id: params[:job_id])
       @job.update(
-        department_id: params[:department_id],
         job_title: params[:job_title],
         department_name: params[:department_name],
         salary: params[:salary],
@@ -77,17 +87,19 @@ class JobsController < ApplicationController
         archive_status: params[:archive_status],
         hiring_manager: params[:hiring_manager]
       )
-      render "show"
+      flash[:success] = "The #{@job.job_title} position has been updated!"
+      redirect_to "/company/#{@job.company.id}/jobs/#{@job.id}"
     end
 
     def destroy
       @job = Job.find_by(id: params[:job_id])
       @job.destroy
       flash[:success] = "The #{@job.job_title} position has been deleted!"
-      redirect_to "dashboard.html.erb"
+      redirect_to "/company/#{@company.id}/jobs/dashboard"
     end
 
     def gen_rec
+      @company = Company.find_by(id: params[:company_id])
       @job = Job.find_by(id: params[:job_id])
       @header = "Recommendation Generator"
       @candidate = Candidate.find_by(job_id: params[:job_id])
@@ -102,9 +114,11 @@ class JobsController < ApplicationController
         end_date_time: params[:end_date_time],
         attendees: params[:attendees]
       }
-      calendar = Google::Apis::CalendarV3::CalendarService.new
-      calendar.authorization.access_token = current_user.token
-      service = calendar.discovered_api('calendar', 'v3')
+      scopes = ["https://www.googleapis.com/auth/calendar"]
+      auth = ::Google::Auth.new_application_credentials(scopes)
+      service = Google::Apis::CalendarV3::CalendarService.new
+      service.authorization.auth
+      service.authorization.fetch_access_token!
 
       @set_event = calendar.execute(
                   api_method: service.events.insert,
