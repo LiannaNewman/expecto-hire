@@ -8,8 +8,6 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Resume</th>
-      <th>Cover Letter</th>
-      <th>References</th>
       <th>Move Forward?</th>
       <th>Status</th>
       <th>Feedback</th>
@@ -30,8 +28,6 @@
         <td><%= candidate.email %></td>
         <td><%= candidate.phone %></td>
         <td><%= image_tag(candidate.resume.url)%> </td>
-        <td> <%= image_tag(candidate.cover_letter.url) %></td>
-        <td> <%= image_tag(candidate.references.url) %></td>
         <td> <%= candidate.move_forward %></td>
         <td> <%= candidate.status %> </td>
         <td><%= candidate.feedback %></td>

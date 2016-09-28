@@ -8,8 +8,8 @@
       <th>Logo</th>
     </tr>
   </thead>
+  <% @companies.each do |company| %>
   <tbody>
-    <tr><% @companies.each do |company| %></tr>
       <td><h6><%=link_to "Click here to log-in to Make Updates to Your Company if you're an admin.", "/companies/#{company.id}/edit"%></h6></td>
       <td><%= company.company_name %></td>
       <td><%= image_tag(company.logo)%> </td>

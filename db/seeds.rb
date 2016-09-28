@@ -18,12 +18,7 @@ Company.all.each do |company|
   company_ids << company.id
 end
 
-department_ids = []
-department_names = []
-Department.all.each do |department|
-  department_ids << deparment.id
-  department_names << deparment.department_name
-end
+department_ids = [{1 => "Human Resources"}, {2 => "External Potions"}, {3 => "Magic Programs"}, {4 => "Muggle Relations"}, {5 => "Divination"}]
 
 20.times do
   dept_samp1 = department_ids.sample
@@ -38,14 +33,9 @@ end
     password_confirmation: password,
     admin: Faker::Boolean.boolean(0.2),
     company_id: company_ids.sample,
-    department_id: dept_samp1,
-    department_name: dept_samp1.department_name
+    department_id: department_ids.index(dept_samp1) + 1,
+    department_name: dept_samp1.values.to_s
   )
-end
-
-user_names = []
-User.each do |user|
-  user_names << (user.first_name + " " + user.last_name)
 end
 
 User.all.each do |user|
@@ -53,7 +43,7 @@ User.all.each do |user|
 end
 
 Company.all.each do |company|
-  CompanyDepartment.create(company_id: company.id.sample, department_id: department_ids.sample)
+  CompanyDepartment.create(company_id: company_ids.sample, department_id: department_ids.sample)
 end
 
 30.times do
@@ -69,35 +59,46 @@ end
     job_criteria_5: Faker::Hacker.adjective,
     projected_start_date: Faker::Date.forward(70),
     archive_status: Faker::Boolean.boolean,
-    department_id: dept_samp,
-    department_name: dept_samp.department_name,
-    company_id: company_ids.sample,
-    hiring_manager: user_names
+    department_id: department_ids.index(dept_samp) + 1,
+    department_name: dept_samp.values.to_s,
+    company_id: company_ids.sample
   )
 end
 
 job_ids = []
-Jobs.all.each do |job|
-  job_ids << job.ids
+Job.all.each do |job|
+  job_ids << job.id
 end
+
+mv_fwd = ['Yes', 'No', 'Maybe']
+status_update = ['Prescreens', 'Phone Screens', 'Interivews', 'Reference Checks', 'Offers']
 
 100.times do
   first = Faker::Name.first_name
   last = Faker::Name.last_name
+  jc1 = Faker::Number.between(1, 5)
+  jc2 = Faker::Number.between(1, 5)
+  jc3 = Faker::Number.between(1, 5)
+  jc4 = Faker::Number.between(1, 5)
+  jc5 = Faker::Number.between(1, 5)
   candidate = Candidate.create(
     first_name: first,
     last_name: last,
     email: first + "." + last + Faker::Internet.free_email,
     phone: Faker::PhoneNumber.cell_phone,
-    resume: Faker::Internet.url('example.com'),
-    cover_letter: Faker::Internet.url('example.com'),
-    references: Faker::Internet.url('example.com'),
-    move_forward: Faker::Boolean.boolean,
-    job_criteria_1: Faker::Number.between(1, 5),
-    job_criteria_2: Faker::Number.between(1, 5),
-    job_criteria_3: Faker::Number.between(1, 5),
-    job_criteria_4: Faker::Number.between(1, 5),
-    job_criteria_5: Faker::Number.between(1, 5),
-    job_id: job_ids.sample
+    resume: 'http://i0.wp.com/www.resumewriting.net/formatsample1a.gif',
+    cover_letter: 'http://i0.wp.com/writenwrite.com/wp-content/uploads/MBA-Cover-Letter-Sample-for-Investment-Service-Job.jpg',
+    references: 'http://i0.wp.com/img.docstoccdn.com/thumb/orig/2461901.png',
+    move_forward: mv_fwd.sample,
+    status: status_update.sample,
+    feedback: Faker::Hipster.paragraphs,
+    job_criteria_1: jc1,
+    job_criteria_2: jc2,
+    job_criteria_3: jc3,
+    job_criteria_4: jc4,
+    job_criteria_5: jc5,
+    total_criteria: jc1 + jc2 + jc3 + jc4 + jc5,
+    job_id: job_ids.sample,
+    top_candidate?: Faker::Boolean.boolean(0.2)
   )
 end
