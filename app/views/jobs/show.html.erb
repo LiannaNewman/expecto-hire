@@ -1,7 +1,7 @@
 <div>
   <h4> Job Title: <%= @job.job_title %></h4>
   <h4> Department: <%= @job.department_name %></h4>
-  <h4> Hiring Manager: $<%= @job.hiring_manager %> </h4>
+  <h4> Hiring Manager: <%= @job.hiring_manager %> </h4>
   <h4> Salary: $<%= @job.salary %> </h4>
   <h4> Projected Start Date: <%= @job.projected_start_date  %></h4>
   <h4> Current Stage: <%= @job.stage %> </h4>
@@ -20,50 +20,6 @@
     <li> <h4> 3: <%= @job.job_criteria_3 %></h4></li>
     <li> <h4> 4: <%= @job.job_criteria_4 %></h4></li>
     <li> <h4> 5: <%= @job.job_criteria_5 %></h4></li>
-</div>
-
-  <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=jur2ulhe6n55s61q8bium7k5u4%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-<div>
-<%= form_tag("/company/#{current_user.company_id}/jobs/#{@job.id}/events", method: "post") do %>
-  <div>
-    <%= label_tag(:summary) %>
-    <%= text_field_tag(:summary) %>
-  </div>
-
-  <div>
-    <%= label_tag(:description) %>
-    <%= text_area_tag(:description) %>
-  </div>
-
-  <div>
-    <%= label_tag(:location) %>
-    <%= text_field_tag(:location) %>
-  </div>
-
-  <div>
-    <%= label_tag(:start_date_time) %>
-    <%= select_datetime Date.today, prefix: :start_date_time %>
-  </div>
-
-  <div>
-    <%= label_tag(:end_date_time) %>
-    <%= select_datetime Date.today, prefix: :end_date_time %>
-  </div>
-
-  <div>
-    <%= label_tag(:attendees) %>
-    <%= text_field_tag(:attendees) %>
-  </div>
-
-  <div>
-    <%= submit_tag("Save Event") %>
-  </div>
-<% end %>
-</div>
-
-<div>
-  <%= link_to 'Sync With Google Calendar', user_google_oauth2_omniauth_authorize_path %>
 </div>
 
 <div>
